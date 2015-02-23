@@ -25,7 +25,7 @@ public class Data {
         String name = f.getName().replace(".xls*", "");
         XSSFWorkbook workbook = new XSSFWorkbook(f);
         subjects.put(name, workbook);
-        printContents();
+        //printContents();
     }
 
     void printContents() {
@@ -46,5 +46,9 @@ public class Data {
 
     public Set<String> getAllStatisticNames() {
         return subjects.getAllStatisticNames();
+    }
+
+    Double getVal(String statistic, String stimuli, String subject) {
+        return subjects.getVal(statistic, stimuli, subject);
     }
 }

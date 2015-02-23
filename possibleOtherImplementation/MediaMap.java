@@ -79,15 +79,29 @@ public class MediaMap {
     public Set<String> getAllStimulusNames() {
         Set<String> retVal = new HashSet<String>();
         for (StimulusMap sm: medias.values()) {
-            retVal.addAll(sm.getAllStimulusNames());
+            if (sm != null) {
+                retVal.addAll(sm.getAllStimulusNames());
+            }
         }
         return retVal;
     }
     public Set<String> getAllStatisticNames() {
         Set<String> retVal = new HashSet<String>();
         for (StimulusMap sm: medias.values()) {
-            retVal.addAll(sm.getAllStatisticNames());
+            if (sm != null) {
+                retVal.addAll(sm.getAllStatisticNames());
+            }
         }
         return retVal;
+    }
+
+    Double getVal(String statistic, String stimulus) {
+        String cut = stimulus.split(" - ")[0];
+        StimulusMap sm = medias.get(cut);
+        if (sm == null) {
+            return null;
+        } else {
+            return sm.getVal(statistic, stimulus);
+        }
     }
 }

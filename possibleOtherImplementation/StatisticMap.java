@@ -34,4 +34,8 @@ public class StatisticMap {
         }
     }
 
+    Double getVal(String statistic) {
+        return statistics.get(statistic);
+    }
+
 }

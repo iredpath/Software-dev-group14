@@ -81,4 +81,14 @@ public class StimulusMap {
         }
         return retVal;
     }
+
+    Double getVal(String statistic, String stimulus) {
+        // for now only get SM data
+        StatisticMap sm = stimuli.get(stimulus);
+        if (sm == null) {
+            return null;
+        } else {
+            return sm.getVal(statistic);
+        }
+    }
 }

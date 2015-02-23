@@ -67,4 +67,13 @@ public class SubjectMap {
         }
         return retVal;
     }
+
+    Double getVal(String statistic, String stimuli, String subject) {
+        MediaMap subjectData = subjects.get(subject);
+        if (subjectData == null) {
+            return null;
+        } else {
+            return subjectData.getVal(statistic, stimuli);
+        }
+    }
 }
