@@ -4,6 +4,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -73,4 +74,11 @@ public class StimulusMap {
         }
     }
 
+    public Set<String> getAllStatisticNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (StatisticMap sm: stimuli.values()) {
+            retVal.addAll(sm.getAllStatisticNames());
+        }
+        return retVal;
+    }
 }

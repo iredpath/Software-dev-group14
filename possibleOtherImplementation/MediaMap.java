@@ -2,6 +2,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -73,5 +74,20 @@ public class MediaMap {
             System.out.println("\t\t\t\t]");
             System.out.println("\t\t\t},");
         }
+    }
+
+    public Set<String> getAllStimulusNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (StimulusMap sm: medias.values()) {
+            retVal.addAll(sm.getAllStimulusNames());
+        }
+        return retVal;
+    }
+    public Set<String> getAllStatisticNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (StimulusMap sm: medias.values()) {
+            retVal.addAll(sm.getAllStatisticNames());
+        }
+        return retVal;
     }
 }

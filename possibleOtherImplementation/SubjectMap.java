@@ -1,7 +1,9 @@
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -43,5 +45,26 @@ public class SubjectMap {
             System.out.println("\t},");
         }
         System.out.println("]");
+    }
+    public Set<String> getAllMediaNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (MediaMap m : subjects.values()) {
+            retVal.addAll(m.getAllMediaNames());
+        }
+        return retVal;
+    }
+    public Set<String> getAllStimulusNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (MediaMap m: subjects.values()) {
+            retVal.addAll(m.getAllStimulusNames());
+        }
+        return retVal;
+    }
+    public Set<String> getAllStatisticNames() {
+        Set<String> retVal = new HashSet<String>();
+        for (MediaMap m: subjects.values()) {
+            retVal.addAll(m.getAllStatisticNames());
+        }
+        return retVal;
     }
 }
