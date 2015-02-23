@@ -26,7 +26,13 @@ public class Reader {
     }
 
     private void addFile(File f) throws IOException, InvalidFormatException {
-        data.addFile(f);/*
+        if (f.isDirectory()) {
+            for (File file: f.listFiles()) {
+                data.addFile(file);
+            }
+        } else {
+            data.addFile(f);
+        }/*
         String name = f.getName().replace(".xls*", "");
         XSSFWorkbook workbook = new XSSFWorkbook(f);
         data.put(name, getMedia(workbook));*/

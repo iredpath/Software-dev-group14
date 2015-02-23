@@ -33,6 +33,10 @@ public class MediaMap {
         for (int i = 0; i < numSheets; i++) {
             XSSFSheet sheet = book.getSheetAt(i);
             String[] sheetNamePieces = sheet.getSheetName().split(" - ");
+            if (sheetNamePieces.length < 2) {
+                // bad sheet, ignore
+                continue;
+            }
             String currType = sheetNamePieces[1];
             String currName = sheetNamePieces[0];
             if (currName.length() > 20) {
@@ -60,7 +64,12 @@ public class MediaMap {
             System.out.println("\t\t\t{");
             System.out.println("\t\t\t\tname: " + s);
             System.out.println("\t\t\t\tstimuli: [");
-            medias.get(s).printContents();
+            StimulusMap sm = medias.get(s);
+            if (sm == null) {
+                System.out.println("\t\t\t\t\tnull");
+            } else {
+                sm.printContents();
+            }
             System.out.println("\t\t\t\t]");
             System.out.println("\t\t\t},");
         }
