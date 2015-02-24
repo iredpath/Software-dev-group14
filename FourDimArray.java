@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class FourDimArray {
+public class FourDimArray {
     private ArrayList<String> subjects = new ArrayList<String>();
     private ArrayList<String> medias = new ArrayList<String>();
     private ArrayList<ArrayList<String>> stimuli = new ArrayList<ArrayList<String>>();
@@ -68,12 +68,12 @@ public abstract class FourDimArray {
         stimuliIndex = stimuli.get(mediaIndex).indexOf(stimulus);
         if (stimuliIndex == -1) {
             stimuli.get(mediaIndex).add(stimulus);
-            stimuliIndex = subjects.size() - 1;
+            stimuliIndex = stimuli.get(mediaIndex).size() - 1;
         }
         statisticIndex = statistics.indexOf(statistic);
         if (statisticIndex == -1) {
             statistics.add(statistic);
-            statisticIndex = subjects.size() - 1;
+            statisticIndex = statistics.size() - 1;
         }
         while (data.size() <= subjectIndex) {
             data.add(new ArrayList<ArrayList<ArrayList<Double>>>());
@@ -93,19 +93,19 @@ public abstract class FourDimArray {
     public Double get(String subject, String media, String stimulus, String statistic) { // for use getting values
         int subjectIndex, mediaIndex, stimuliIndex, statisticIndex;
         subjectIndex = subjects.indexOf(subject);
-        if ((subjectIndex != -1) || (data.size() <= subjectIndex)) {
+        if ((subjectIndex == -1) || (data.size() <= subjectIndex)) {
             return null;
         }
         mediaIndex = medias.indexOf(media);
-        if ((mediaIndex != -1) || (data.get(subjectIndex).size() <= mediaIndex)) {
+        if ((mediaIndex == -1) || (data.get(subjectIndex).size() <= mediaIndex)) {
             return null;
         }
         stimuliIndex = stimuli.get(mediaIndex).indexOf(stimulus);
-        if ((stimuliIndex != -1) || (data.get(subjectIndex).get(mediaIndex).size() <= stimuliIndex)) {
+        if ((stimuliIndex == -1) || (data.get(subjectIndex).get(mediaIndex).size() <= stimuliIndex)) {
             return null;
         }
         statisticIndex = statistics.indexOf(statistic);
-        if ((statisticIndex != -1) || (data.get(subjectIndex).get(mediaIndex).get(stimuliIndex).size() <= statisticIndex)) {
+        if ((statisticIndex == -1) || (data.get(subjectIndex).get(mediaIndex).get(stimuliIndex).size() <= statisticIndex)) {
             return null;
         }
         return data.get(subjectIndex).get(mediaIndex).get(stimuliIndex).get(statisticIndex);
